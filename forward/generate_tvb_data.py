@@ -77,14 +77,14 @@ if __name__ == '__main__':
     os.environ["MKL_NUM_THREADS"] = "1"
     start_time = time.time()
     # RUN THE CODE IN PARALLEL
-    # processes = [mp.Process(target=main, args=(x,)) for x in range(args.a_start, args.a_end)]
-    # for p in processes:
-    #     p.start()
-    # # Exit the completed processes
-    # for p in processes:
-    #     p.join()
+    processes = [mp.Process(target=main, args=(x,)) for x in range(args.a_start, args.a_end)]
+    for p in processes:
+        p.start()
+    # Exit the completed processes
+    for p in processes:
+        p.join()
     # NO PARALLEL
-    for x in range(args.a_start, args.a_end):
-        main(x)
+    # for x in range(args.a_start, args.a_end):
+    #     main(x)
     print('Total_time', time.time() - start_time)
 
